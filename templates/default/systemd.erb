@@ -3,6 +3,9 @@ Description=Xvfb X Server
 After=network.target
 
 [Service]
+<% if @user %>
+User=<%= @user %>
+<% end %>
 ExecStart=/usr/bin/Xvfb <%= @display %> -screen <%= @screennum %> <%= @dimensions %> <%= @args %>
 
 [Install]

@@ -1,3 +1,5 @@
+default['xvfb']['user'] = nil
+
 default['xvfb']['display'] = ':0'
 default['xvfb']['screennum']  = '0'
 default['xvfb']['dimensions'] = '1280x1024x24'

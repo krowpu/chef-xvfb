@@ -14,6 +14,7 @@ template path do
   source src
   mode '0755'
   variables(
+    user: node['xvfb']['user'],
     display: node['xvfb']['display'],
     screennum: node['xvfb']['screennum'],
     dimensions: node['xvfb']['dimensions'],
