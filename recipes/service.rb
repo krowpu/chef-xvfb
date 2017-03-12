@@ -20,17 +20,17 @@ template path do
     dimensions: node['xvfb']['dimensions'],
     args: node['xvfb']['args']
   )
-  notifies :run, 'execute[update]', :immediately
-  notifies(:restart, 'service[xvfb]')
 end
 
 execute 'update' do
   action :nothing
+  subscribes :run, "template[#{path}]", :immediately
 
   only_if { xvfb_systype == 'systemd' }
   command 'systemctl daemon-reload'
 end
 
 service 'xvfb' do
-  action [:enable, :start]
+  subscribes :restart, "template[#{path}]", :immediately
+  action %i(enable start)
 end
